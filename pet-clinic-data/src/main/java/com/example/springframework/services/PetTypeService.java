@@ -1,7 +1,6 @@
 package com.example.springframework.services;
 
-import com.example.springframework.model.Pet;
-import com.example.springframework.services.CrudService;
+import com.example.springframework.model.PetType;
 
-public interface PetTypeService extends CrudService<Pet, Long> {
+public interface PetTypeService extends CrudService<PetType, Long> {
 }

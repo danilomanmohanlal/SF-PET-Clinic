@@ -1,14 +1,15 @@
 package com.example.springframework.services.map;
 
 import com.example.springframework.model.Pet;
+import com.example.springframework.model.PetType;
 import com.example.springframework.services.PetTypeService;
 
 import java.util.Set;
 
-public class PetTypeMapService extends AbstractMapService<Pet, Long> implements PetTypeService {
+public class PetTypeMapService extends AbstractMapService<PetType, Long> implements PetTypeService {
 
     @Override
-    public Set<Pet> findAll() {
+    public Set<PetType> findAll() {
         return super.findAll();
     }
 
@@ -18,17 +19,17 @@ public class PetTypeMapService extends AbstractMapService<Pet, Long> implements 
     }
 
     @Override
-    public void delete(Pet Object) {
+    public void delete(PetType Object) {
         super.delete(Object);
     }
 
     @Override
-    public Pet save(Pet Object) {
+    public PetType save(PetType Object) {
         return super.save(Object);
     }
 
     @Override
-    public Pet findById(Long id) {
+    public PetType findById(Long id) {
         return super.findById(id);
     }
 }
