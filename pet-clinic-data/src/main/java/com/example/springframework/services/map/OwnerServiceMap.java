@@ -13,11 +13,11 @@ import java.util.Set;
 @Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
-    private final PetTypeService petTypeServicey;
+    private final PetTypeService petTypeService;
     private final PetService petService;
 
-    public OwnerServiceMap(PetTypeService petTypeServicey, PetService petService) {
-        this.petTypeServicey = petTypeServicey;
+    public OwnerServiceMap(PetTypeService petTypeService, PetService petService) {
+        this.petTypeService = petTypeService;
         this.petService = petService;
     }
 
@@ -35,7 +35,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
                 pets.forEach( pet -> {
                     PetType petType = pet.getPetType();
                     if (petType.getId() == null) {
-                        PetType save = petTypeServicey.save(pet.getPetType());
+                        PetType save = petTypeService.save(pet.getPetType());
                         pet.setPetType(save);
                     }
 
