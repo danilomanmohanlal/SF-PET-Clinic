@@ -1,10 +1,7 @@
 package com.example.springframework.bootstrap;
 
 import com.example.springframework.model.*;
-import com.example.springframework.services.OwnerService;
-import com.example.springframework.services.PetTypeService;
-import com.example.springframework.services.VetService;
-import com.example.springframework.services.VisitService;
+import com.example.springframework.services.*;
 import com.example.springframework.services.map.SpecialtyMapService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -17,15 +14,15 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
-    private final SpecialtyMapService specialtyMapService;
+    private final SpecialtyService specialtyService;
     private final VisitService visitService;
 
     public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
-                      SpecialtyMapService specialtyMapService, VisitService visitService) {
+                      SpecialtyService specialtyService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
-        this.specialtyMapService = specialtyMapService;
+        this.specialtyService = specialtyService;
         this.visitService = visitService;
     }
 
@@ -48,15 +45,15 @@ public class DataLoader implements CommandLineRunner {
 
         Specialty radiology = new Specialty();
         radiology.setDescription("Radiology");
-        Specialty savedRadiology = specialtyMapService.save(radiology);
+        Specialty savedRadiology = specialtyService.save(radiology);
 
         Specialty surgery = new Specialty();
         radiology.setDescription("Surgery");
-        Specialty savedSurgery = specialtyMapService.save(surgery);
+        Specialty savedSurgery = specialtyService.save(surgery);
 
         Specialty dentistry = new Specialty();
         radiology.setDescription("Dentistry");
-        Specialty savedDentistry = specialtyMapService.save(dentistry);
+        Specialty savedDentistry = specialtyService.save(dentistry);
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");
@@ -105,8 +102,8 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
-        vet2.setFirstName("Sam");
-        vet2.setLastName("Axe");
+        vet2.setFirstName("Jessie");
+        vet2.setLastName("Porter");
         vet2.getSpecialties().add(savedDentistry);
         vetService.save(vet2);
 
