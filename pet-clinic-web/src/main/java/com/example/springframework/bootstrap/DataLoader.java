@@ -4,6 +4,7 @@ import com.example.springframework.model.*;
 import com.example.springframework.services.OwnerService;
 import com.example.springframework.services.PetTypeService;
 import com.example.springframework.services.VetService;
+import com.example.springframework.services.VisitService;
 import com.example.springframework.services.map.SpecialtyMapService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -17,12 +18,15 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyMapService specialtyMapService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyMapService specialtyMapService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
+                      SpecialtyMapService specialtyMapService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyMapService = specialtyMapService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -85,6 +89,13 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(fionasCat);
 
         this.ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(fionasCat);
+        catVisit.setDescription("visit for fionas cat");
+        catVisit.setDate(LocalDate.now());
+        visitService.save(catVisit);
+
         System.out.println("owners loaded");
 
         Vet vet1 = new Vet();
